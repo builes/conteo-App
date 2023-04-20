@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Product } from '../product/Product';
 
 export const Products = ({ products, setProducts }) => {
 	const deleteProduct = (code) => {
@@ -7,21 +8,19 @@ export const Products = ({ products, setProducts }) => {
 	};
 
 	if (products.length === 0) {
-		return <h1>No products yet</h1>;
+		return <h1 className='col-12 col-sm-6'>No products yet</h1>;
 	}
 
 	return (
-		<div>
-			{products.map(({ code, name, quantity, description, date }) => (
-				<div key={code}>
-					<p>Code: {code}</p>
-					<p>Name: {name}</p>
-					<p>Quantity: {quantity}</p>
-					<p>description: {description}</p>
-					<time>date: {date}</time>
-					<button onClick={() => deleteProduct(code)}>Delete Product</button>
-				</div>
-			))}
+		<div className='col-12 col-sm-6 col-lg-8 '>
+			<h1>Products</h1>
+			<div className='row'>
+				{products.map((product) => (
+					<div key={product.code} className='mb-4 col-lg-6'>
+						<Product {...product} deleteProduct={deleteProduct} />
+					</div>
+				))}
+			</div>
 		</div>
 	);
 };
