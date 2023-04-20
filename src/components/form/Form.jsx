@@ -1,13 +1,20 @@
 import { useForm } from '../utils/hooks/useForm';
+import { useLocalStorage } from '../utils/hooks/useLocalStorage';
 
 export const Form = () => {
 	const { code, name, quantity, description, onInputChange, onResetForm } =
 		useForm({ code: '', name: '', quantity: '', description: '' });
 
+	const { value: products, setValue: setFormData } =
+		useLocalStorage('Products');
+
 	const handleCreateProduct = (e) => {
 		e.preventDefault();
-		console.log(code, name, quantity, description);
-		console.log('object');
+		const currentDate = new Date();
+		const date = currentDate.toLocaleString();
+		const product = { code, name, quantity, description, date };
+		setFormData([product, ...products]);
+		onResetForm();
 	};
 
 	return (
@@ -21,12 +28,14 @@ export const Form = () => {
 				required
 				type='number'
 				name='code'
+				value={code}
 				placeholder='Enter the product code'
 				onChange={onInputChange}
 			/>
 			<input
 				type='text'
 				name='name'
+				value={name}
 				placeholder='Enter the product name'
 				onChange={onInputChange}
 				required
@@ -34,12 +43,14 @@ export const Form = () => {
 			<input
 				type='number'
 				name='quantity'
+				value={quantity}
 				placeholder='Enter how many products'
 				onChange={onInputChange}
 				required
 			/>
 			<textarea
 				name='description'
+				value={description}
 				cols='30'
 				rows='10'
 				placeholder='Enter the description'
