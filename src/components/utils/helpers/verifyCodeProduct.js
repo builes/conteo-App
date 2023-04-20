@@ -1,4 +1,4 @@
-export const products = JSON.parse(localStorage.getItem('Products')) || [];
+export const products = JSON.parse(localStorage.getItem('products')) || [];
 
 // if find the code of the product return the value else return undefined
 export const verifyCodeProduct = (codeProduct) => {

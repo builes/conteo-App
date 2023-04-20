@@ -2,23 +2,19 @@ import { verifyCodeProduct } from '../utils/helpers/verifyCodeProduct';
 import { useForm } from '../utils/hooks/useForm';
 import { useLocalStorage } from '../utils/hooks/useLocalStorage';
 
-export const Form = () => {
+export const Form = ({ products, setProducts }) => {
 	const { code, name, quantity, description, onInputChange, onResetForm } =
 		useForm({ code: '', name: '', quantity: '', description: '' });
-
-	const { value: products, setValue: setFormData } =
-		useLocalStorage('Products');
 
 	const handleCreateProduct = (e) => {
 		e.preventDefault();
 		const currentDate = new Date();
 		const date = currentDate.toLocaleString();
 		const existCode = verifyCodeProduct(code);
-		console.log(existCode);
 
 		if (!existCode) {
 			const product = { code, name, quantity, description, date };
-			setFormData([product, ...products]);
+			setProducts([product, ...products]);
 			onResetForm();
 			return;
 		}
