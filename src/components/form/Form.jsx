@@ -10,7 +10,7 @@ export const Form = ({ products, setProducts }) => {
 		e.preventDefault();
 		const currentDate = new Date();
 		const date = currentDate.toLocaleString();
-		const existCode = verifyCodeProduct(code);
+		const existCode = verifyCodeProduct(products, code);
 
 		if (!existCode) {
 			const product = { code, name, quantity, description, date };

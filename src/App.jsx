@@ -11,7 +11,7 @@ export const App = () => {
 		<div>
 			<h1>Create a new Product</h1>
 			<Form products={products} setProducts={setProducts} />
-			<Products products={products} />
+			<Products products={products} setProducts={setProducts} />
 		</div>
 	);
 };
