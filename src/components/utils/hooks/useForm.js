@@ -6,7 +6,7 @@ export const useForm = (initialForm) => {
 	const onInputChange = ({ target }) => {
 		const { name, value } = target;
 
-		setformState({ ...formState, [name]: value });
+		setformState({ ...formState, [name]: value.toLowerCase() });
 	};
 
 	const onResetForm = () => {

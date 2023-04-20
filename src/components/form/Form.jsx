@@ -1,3 +1,4 @@
+import { verifyCodeProduct } from '../utils/helpers/verifyCodeProduct';
 import { useForm } from '../utils/hooks/useForm';
 import { useLocalStorage } from '../utils/hooks/useLocalStorage';
 
@@ -12,9 +13,17 @@ export const Form = () => {
 		e.preventDefault();
 		const currentDate = new Date();
 		const date = currentDate.toLocaleString();
-		const product = { code, name, quantity, description, date };
-		setFormData([product, ...products]);
-		onResetForm();
+		const existCode = verifyCodeProduct(code);
+		console.log(existCode);
+
+		if (!existCode) {
+			const product = { code, name, quantity, description, date };
+			setFormData([product, ...products]);
+			onResetForm();
+			return;
+		}
+
+		alert('El codigo del producto ya se encuentra registrado');
 	};
 
 	return (
