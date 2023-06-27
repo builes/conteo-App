@@ -8,11 +8,16 @@ export const Products = ({ products, setProducts }) => {
 	};
 
 	if (products.length === 0) {
-		return <h1 className='col-12 col-sm-6'>No products yet</h1>;
+		return (
+			<div className='col-12 col-sm-6'>
+				<h3>Products</h3>
+				<p>No products yet</p>
+			</div>
+		);
 	}
 
 	return (
-		<div className='col-12 col-sm-6 col-lg-8 '>
+		<div className='col-12 col-sm-6 col-lg-8 border'>
 			<h1>Products</h1>
 			<div className='row'>
 				{products.map((product) => (

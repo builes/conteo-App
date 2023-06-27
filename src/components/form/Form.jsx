@@ -23,7 +23,7 @@ export const Form = ({ products, setProducts }) => {
 	};
 
 	return (
-		<form onSubmit={handleCreateProduct} className='col-12 col-sm-6 col-lg-4'>
+		<form onSubmit={handleCreateProduct} className='col-12 col-sm-6 col-lg-4 '>
 			<p>
 				Please, fill in all the fields of the form to be able to create a new
 				product
